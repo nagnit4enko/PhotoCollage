@@ -27,39 +27,36 @@ section img {
 </head>
 <body>
 <section>
-<img src='http://placekitten.com/300/361' alt=''>
-<img src='http://placekitten.com/300/305' alt=''>
-<img src='http://placekitten.com/300/345' alt=''>
-<img src='http://placekitten.com/300/295' alt=''>
-<img src='http://placekitten.com/300/214' alt=''>
-<img src='http://placekitten.com/300/352' alt=''>
-<img src='http://placekitten.com/300/328' alt=''>
-<img src='http://placekitten.com/300/236' alt=''>
-<img src='http://placekitten.com/300/319' alt=''>
-<img src='http://placekitten.com/300/306' alt=''>
-<img src='http://placekitten.com/300/356' alt=''>
-<img src='http://placekitten.com/300/345' alt=''>
-<img src='http://placekitten.com/300/311' alt=''>
-<img src='http://placekitten.com/300/218' alt=''>
-<img src='http://placekitten.com/300/219' alt=''>
-	
+	<img src='http://placekitten.com/300/361'>
+	<img src='http://placekitten.com/300/305'>
+	<a>
+	<img src='http://placekitten.com/300/345'>
+	</a>
+	<img src='http://placekitten.com/300/295'>
+	<img src='http://placekitten.com/300/214'>
+	<img src='http://placekitten.com/300/352'>
+	<img src='http://placekitten.com/300/328'>
+	<img src='http://placekitten.com/300/236'>
+	<img src='http://placekitten.com/300/319'>
+	<img src='http://placekitten.com/300/306'>
+	<img src='http://placekitten.com/300/356'>
+	<img src='http://placekitten.com/300/345'>
+	<img src='http://placekitten.com/300/311'>
+	<img src='http://placekitten.com/300/218'>
+	<img src='http://placekitten.com/300/219'>
 </section>
 
 <script>
-var imgs = $('section img');
+var imgs = $('section img'), obj;
 $.each(imgs, function(i, v){
 	var img = new Image();
-	img.src = $(v).attr('src');
+	img.src = v.src;
 	img.onload = function(){
 		w = Math.round(img.width * 200 / img.height);
 		w = (w > img.width ? img.width : w);
 		h = Math.round(w * (img.height / img.width) + 40);
-		var obj = v.parentNode;
-		if($(obj)[0].tagName == 'A'){ // fix for links 
-			obj.style = 'flex-grow: 1; width: '+w+'px;padding:5px;height: '+h+'px';
-		}else{
-			v.style = 'flex-grow: 1; width: '+w+'px; height: '+h+'px';
-		}
+		obj = v.parentNode;
+		(obj.tagName == 'A' ? obj : v).style = 'flex-grow: 1; ' + (obj.tagName == 'A' ? 'padding:5px;' : '') + 'width: ' + w + 'px; height: ' + h + 'px';
 	}
 })
 </script>
