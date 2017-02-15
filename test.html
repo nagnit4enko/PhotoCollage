@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Фото коллаж на jQuery & Css</title>
+<style>
+section {
+    display: flex;
+    flex-wrap: wrap;
+		width: 840px;
+		flex-grow: 1;
+		content: ""
+}
+section a img {
+	margin: 0
+}
+section img {
+    padding: 5px 0 0 5px;
+    position: relative;
+		flex-grow: 0;
+		height: 100%;
+		width: 100%;
+		margin: 5px 0 0 5px;
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+</head>
+<body>
+<section>
+<img src='http://placekitten.com/300/361' alt=''>
+<img src='http://placekitten.com/300/305' alt=''>
+<img src='http://placekitten.com/300/345' alt=''>
+<img src='http://placekitten.com/300/295' alt=''>
+<img src='http://placekitten.com/300/214' alt=''>
+<img src='http://placekitten.com/300/352' alt=''>
+<img src='http://placekitten.com/300/328' alt=''>
+<img src='http://placekitten.com/300/236' alt=''>
+<img src='http://placekitten.com/300/319' alt=''>
+<img src='http://placekitten.com/300/306' alt=''>
+<img src='http://placekitten.com/300/356' alt=''>
+<img src='http://placekitten.com/300/345' alt=''>
+<img src='http://placekitten.com/300/311' alt=''>
+<img src='http://placekitten.com/300/218' alt=''>
+<img src='http://placekitten.com/300/219' alt=''>
+	
+</section>
+
+<script>
+var imgs = $('section img');
+$.each(imgs, function(i, v){
+	var img = new Image();
+	img.src = $(v).attr('src');
+	img.onload = function(){
+		w = Math.round(img.width * 200 / img.height);
+		w = (w > img.width ? img.width : w);
+		h = Math.round(w * (img.height / img.width) + 40);
+		var obj = v.parentNode;
+		if($(obj)[0].tagName == 'A'){ // fix for links 
+			obj.style = 'flex-grow: 1; width: '+w+'px;padding:5px;height: '+h+'px';
+		}else{
+			v.style = 'flex-grow: 1; width: '+w+'px; height: '+h+'px';
+		}
+	}
+})
+</script>
+</body>
+</html>
